@@ -1,0 +1,3 @@
+function mdv() {
+	pandoc -s $1 | lynx -stdin
+}
