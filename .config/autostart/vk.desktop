@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Network;
+Comment=Simple and Easy App for Messaging on VK
+Exec=vk %U --disable-gpu
+GenericName=VK
+Icon=/usr/share/pixmaps/vk.png
+Name=VK Messenger
+StartupNotify=true
+Type=Application

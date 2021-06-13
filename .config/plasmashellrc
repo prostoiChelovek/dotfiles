@@ -1,0 +1,74 @@
+[KFileDialog Settings]
+Recent Files[$e]=planet_omega-wallpaper-2560x1080.jpg,file:$HOME/Pictures/planet_omega-wallpaper-2560x1080.jpg
+Recent URLs[$e]=file:$HOME/Downloads/,file:$HOME/Pictures/
+detailViewIconSize=16
+
+[KPropertiesDialog]
+HDMI-0 Height 2560x1080=472
+HDMI-0 Width 2560x1080=463
+
+[PlasmaViews][Panel 2]
+alignment=132
+panelVisibility=1
+
+[PlasmaViews][Panel 2][Defaults]
+maxLength=867
+minLength=497
+offset=10
+thickness=52
+
+[PlasmaViews][Panel 2][Horizontal2560]
+maxLength=867
+minLength=497
+offset=10
+thickness=52
+
+[PlasmaViews][Panel 23][Defaults]
+thickness=27
+
+[PlasmaViews][Panel 23][Horizontal2560]
+thickness=27
+
+[PlasmaViews][Panel 25]
+alignment=132
+panelVisibility=1
+
+[PlasmaViews][Panel 25][Defaults]
+maxLength=924
+minLength=546
+offset=0
+thickness=52
+
+[PlasmaViews][Panel 25][Horizontal2560]
+maxLength=924
+minLength=546
+offset=0
+thickness=52
+
+[PlasmaViews][Panel 25][Vertical1080]
+thickness=44
+
+[PlasmaViews][Panel 45]
+alignment=132
+panelVisibility=1
+
+[PlasmaViews][Panel 45][Defaults]
+maxLength=228
+minLength=224
+offset=-6
+thickness=52
+
+[PlasmaViews][Panel 45][Horizontal2560]
+maxLength=228
+minLength=224
+offset=-6
+thickness=52
+
+[PlasmaViews][Panel 45][Vertical1080]
+thickness=36
+
+[ScreenConnectors]
+0=HDMI-0
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/systemloadviewer_systemmonitor.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/containmentactions_middlebutton.js
