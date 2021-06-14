@@ -12,10 +12,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 colorscheme PaperColor
 set background=dark
+
+let g:airline_theme='angr'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#tab_min_count = 2
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -30,7 +38,7 @@ let g:nvim_tree_auto_close = 1
 let g:nvim_tree_follow = 1
 let g:nvim_tree_git_hl = 1
 let g:nvim_tree_group_empty = 1
-nnoremap <leader>tt :NvimTreeToggle<CR>
+nnoremap <C-t> :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tn :NvimTreeFindFile<CR>
 
