@@ -67,7 +67,8 @@ let g:signify_sign_delete            = '_'
 let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 
-let g:cmake_generate_options = ['-DCMAKE_EXPORT_COMPILE_COMMANDS=1', '-j 4']
+let g:cmake_generate_options = ['-DCMAKE_EXPORT_COMPILE_COMMANDS=1']
+let g:cmake_build_options = ['-j 8']
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
