@@ -46,6 +46,44 @@ nnoremap <C-t> :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tn :NvimTreeFindFile<CR>
 
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+set spellfile=~/.vim/spell/en.utf-8.add
+command Spellcheck :setlocal spell spelllang=ru_yo,en_us
+command NoSpell :setlocal nospell
+
+autocmd FileType help setlocal nospell
+
+autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
+autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
+
+" redirect the output of a Vim or external command into a scratch buffer
+" https://vi.stackexchange.com/a/16607
+function! RedirIfError(cmd)
+    if a:cmd =~ '^!'
+        execute "let output = system('" . substitute(a:cmd, '^!', '', '') . "')"
+    else
+        redir => output
+        execute a:cmd
+        redir END
+    endif
+    if v:shell_error != 0
+        vnew
+        setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+        call setline(1, split(output, "\n"))
+        put! = a:cmd
+        silent put = '----'
+
+        setlocal wrap
+        normal G
+    else
+        echo "OK"
+    endif
+endfunction
+" command! -nargs=1 RedirIfError silent call RedirIfError(<f-args>)
+
+autocmd FileType tex nnoremap <buffer> <C-s> <Esc>:w <Cr>:call RedirIfError("!pdflatex -output-directory=" . expand("%:p:h") . "/out " . expand("%:p")) <Cr>
+
 " https://stackoverflow.com/a/1618401/9577873
 function! <SID>StripTrailingWhitespaces()
   if !&binary && &filetype != 'diff'
