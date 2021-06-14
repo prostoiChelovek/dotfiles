@@ -84,6 +84,9 @@ endfunction
 
 autocmd FileType tex nnoremap <buffer> <C-s> <Esc>:w <Cr>:call RedirIfError("!pdflatex -output-directory=" . expand("%:p:h") . "/out " . expand("%:p")) <Cr>
 
+autocmd FileType text nnoremap <buffer> j gj
+autocmd FileType text nnoremap <buffer> k gk
+
 " https://stackoverflow.com/a/1618401/9577873
 function! <SID>StripTrailingWhitespaces()
   if !&binary && &filetype != 'diff'
