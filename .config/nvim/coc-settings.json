@@ -1,4 +1,10 @@
 {
+    "coc.preferences.formatOnSaveFiletypes": [
+        "yaml",
+        "json",
+        "python",
+        "cpp"
+    ],
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -21,6 +27,13 @@
                     "directory": "/tmp/ccls"
                 }
             }
+        },
+        "pyls": {
+            "command": "pyls",
+            "filetypes": [
+                "python"
+            ],
+            "settings": {}
         }
     }
 }
