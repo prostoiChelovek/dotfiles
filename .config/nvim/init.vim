@@ -15,6 +15,10 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'cdelledonne/vim-cmake'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 colorscheme PaperColor
