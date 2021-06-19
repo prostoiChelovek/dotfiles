@@ -1,5 +1,8 @@
 let mapleader = "\<Space>"
 
+set exrc
+set secure
+
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -10,7 +13,7 @@ set nu
 set scrolloff=8
 
 " highlight exceedings of 80 chars length limit
-match ColorColumn "\%80v."
+match ColorColumn "\%110v."
 
 set nohlsearch
 set smartcase

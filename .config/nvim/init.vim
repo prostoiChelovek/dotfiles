@@ -28,12 +28,16 @@ Plug 'voldikss/vim-floaterm'
 Plug 'ilyachur/cmake4vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'honza/vim-snippets'
+
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
 
 colorscheme PaperColor
-set background=dark
+set background=light
 
-let g:airline_theme='angr'
+let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#tab_min_count = 2
@@ -69,8 +73,19 @@ let g:signify_sign_change            = '~'
 
 let g:cmake_usr_args = '-DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 let g:make_arguments = '-j 8'
+let g:cmake_kits = {
+            \  "stm": {
+            \    "cmake_usr_args": {
+            \      "CUBE_PATH": "/home/chelovek/projects/STM32CubeH7",
+            \      "USE_HAL_FRAMEWORK": "1",
+            \      "BUILD_FOR_BOARD": "1"
+            \    }
+            \  } }
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+nnoremap <Leader>l :CMakeSelectTarget upload<CR>:CMakeBuild<CR>
+nnoremap <Leader>< :CMakeSelectTarget debug<CR>:CMakeBuild<CR>
 
 set spellfile=~/.vim/spell/en.utf-8.add
 command Spellcheck :setlocal spell spelllang=ru_yo,en_us
@@ -119,6 +134,30 @@ function! <SID>StripTrailingWhitespaces()
     call winrestview(l:save)
   endif
 endfun
+
+nnoremap <C-c> :bp\|bd #<CR>
+
+function! s:SwitchPSCStyle()
+    if &background == "light"
+        set background=dark
+        let g:airline_theme='angr'
+    else
+        set background=light
+        let g:airline_theme='papercolor'
+    endif
+endfunction
+map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
+
+" https://zenbro.github.io/2015/06/26/review-last-commit-with-vim-and-fugitive.html
+function! ReviewLastCommit()
+  if exists('b:git_dir')
+    Gtabedit HEAD^{}
+    nnoremap <buffer> <silent> q :<C-U>bdelete<CR>
+  else
+    echo 'No git a git repository:' expand('%:p')
+  endif
+endfunction
+map <silent> <F10> :call ReviewLastCommit()<CR>
 
 augroup THE_PREMEAGENT
     autocmd!
