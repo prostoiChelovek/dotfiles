@@ -148,6 +148,12 @@ function! s:SwitchPSCStyle()
 endfunction
 map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
 
+function! s:Pio()
+    nmap <leader>c :silent exe "!tmux send-keys -t 1.1 C-c && tmux resize-pane -Z -t 1.0 Enter"<CR>
+    nmap <leader>l :silent exe "!tmux resize-pane -Z -t 1.0 && tmux send -t 1.1 'pio run --target upload && pio device monitor --baud 115200' Enter"<CR>
+endfunction
+command! Pio silent call <SID>Pio()
+
 " https://zenbro.github.io/2015/06/26/review-last-commit-with-vim-and-fugitive.html
 function! ReviewLastCommit()
   if exists('b:git_dir')
