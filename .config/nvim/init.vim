@@ -7,6 +7,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -164,9 +165,4 @@ function! ReviewLastCommit()
   endif
 endfunction
 map <silent> <F10> :call ReviewLastCommit()<CR>
-
-augroup THE_PREMEAGENT
-    autocmd!
-    autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-augroup END
 
