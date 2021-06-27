@@ -33,6 +33,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+
+Plug 'tpope/vim-abolish'
 call plug#end()
 
 colorscheme PaperColor
@@ -87,6 +89,24 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKL
 
 nnoremap <Leader>l :CMakeSelectTarget upload<CR>:CMakeBuild<CR>
 nnoremap <Leader>< :CMakeSelectTarget debug<CR>:CMakeBuild<CR>
+
+function! SwitchHeaderSource()
+    let l:pathNoExt = expand("%:p:r")
+    let l:ext = expand("%:e")
+    if l:ext == "h"
+        execute 'e' . l:pathNoExt . ".cpp"
+    elseif l:ext == "cpp"
+        execute 'e' . l:pathNoExt . ".h"
+    endif
+endfunction
+nnoremap <Leader>f :silent call SwitchHeaderSource()<CR>
+
+function! OpenExt()
+    let l:pathNoExt = expand("%:p:r")
+    let l:ext = input("Ext: ")
+    execute 'e' . l:pathNoExt . "." . l:ext
+endfunction
+nnoremap <Leader><Leader>f :silent call OpenExt()<CR>
 
 set spellfile=~/.vim/spell/en.utf-8.add
 command Spellcheck :setlocal spell spelllang=ru_yo,en_us
@@ -166,3 +186,34 @@ function! ReviewLastCommit()
 endfunction
 map <silent> <F10> :call ReviewLastCommit()<CR>
 
+" https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
+function! Redir(cmd, rng, start, end)
+	for win in range(1, winnr('$'))
+		if getwinvar(win, 'scratch')
+			execute win . 'windo close'
+		endif
+	endfor
+	if a:cmd =~ '^!'
+		let cmd = a:cmd =~' %'
+			\ ? matchstr(substitute(a:cmd, ' %', ' ' . expand('%:p'), ''), '^!\zs.*')
+			\ : matchstr(a:cmd, '^!\zs.*')
+		if a:rng == 0
+			let output = systemlist(cmd)
+		else
+			let joined_lines = join(getline(a:start, a:end), '\n')
+			let cleaned_lines = substitute(shellescape(joined_lines), "'\\\\''", "\\\\'", 'g')
+			let output = systemlist(cmd . " <<< $" . cleaned_lines)
+		endif
+	else
+		redir => output
+		execute a:cmd
+		redir END
+		let output = split(output, "\n")
+	endif
+	vnew
+	let w:scratch = 1
+	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+	call setline(1, output)
+endfunction
+
+command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
