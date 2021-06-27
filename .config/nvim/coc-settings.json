@@ -1,13 +1,12 @@
 {
     "coc.preferences.formatOnSaveFiletypes": [
         "yaml",
-        "json",
-        "python",
-        "cpp"
+        "json"
     ],
     "languageserver": {
         "ccls": {
             "command": "ccls",
+            "trace.server": "verbose",
             "filetypes": [
                 "c",
                 "cc",
