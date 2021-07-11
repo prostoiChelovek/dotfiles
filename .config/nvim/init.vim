@@ -35,6 +35,10 @@ Plug 'honza/vim-snippets'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 Plug 'tpope/vim-abolish'
+
+Plug 'khaveesh/vim-fish-syntax'
+
+Plug 'vim-test/vim-test'
 call plug#end()
 
 colorscheme PaperColor
@@ -84,6 +88,9 @@ let g:cmake_kits = {
             \      "BUILD_FOR_BOARD": "1"
             \    }
             \  } }
+
+let test#strategy = "neovim"
+let test#python#runner = 'python3.7 -m pytest'
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -171,7 +178,7 @@ map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
 
 function! s:Pio()
     nmap <leader>c :silent exe "!tmux send-keys -t 1.1 C-c && tmux resize-pane -Z -t 1.0 Enter"<CR>
-    nmap <leader>l :silent exe "!tmux resize-pane -Z -t 1.0 && tmux send -t 1.1 'pio run --target upload && pio device monitor --baud 115200' Enter"<CR>
+    nmap <leader>l :silent exe "!tmux resize-pane -Z -t 1.0 && tmux send -t 1.1 'pio run --target upload -e uno && pio device monitor --baud 9600' Enter"<CR>
 endfunction
 command! Pio silent call <SID>Pio()
 
