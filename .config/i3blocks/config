@@ -1,0 +1,51 @@
+color=#FFFFFF
+
+[calendar]
+command=/usr/lib/i3blocks/calendar/calendar
+interval=1
+LABEL= 
+DATEFMT=+%H:%M:%S %a %d.%m
+SHORTFMT=+%H:%M:%S
+HEIGHT=180
+WIDTH=220
+
+[volume]
+command=/usr/lib/i3blocks/volume/volume
+LABEL=♪ 
+#LABEL=VOL 
+interval=once
+signal=10
+#STEP=5%
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+#NATURAL_MAPPING=0
+
+[key_layout]
+#command=./layout.sh
+command=xkblayout-state print "%s"; echo
+interval=5
+
+[cpu_usage]
+command=/usr/lib/i3blocks/cpu_usage/cpu_usage
+interval=5
+LABEL=CPU 
+#min_width=CPU: 100%
+T_WARN=50
+T_CRIT=80
+DECIMALS=0
+color=#00B4EB
+
+[temperature]
+command=/usr/lib/i3blocks/temperature/temperature
+label=TEMP
+interval=5
+T_WARN=70
+T_CRIT=90
+#SENSOR_CHIP=""
+color=#E38E5D
+
+[memory]
+command=free -h | awk '/Mem:/ { printf("RAM: %5s \n", $3) }'
+interval=5
+color=#FEC925
+
