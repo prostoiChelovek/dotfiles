@@ -39,6 +39,8 @@ Plug 'tpope/vim-abolish'
 Plug 'khaveesh/vim-fish-syntax'
 
 Plug 'vim-test/vim-test'
+
+Plug 'simeji/winresizer'
 call plug#end()
 
 colorscheme PaperColor
@@ -85,6 +87,7 @@ let g:cmake_kits = {
             \    "cmake_usr_args": {
             \      "CUBE_PATH": "/home/chelovek/projects/STM32CubeH7",
             \      "USE_HAL_FRAMEWORK": "1",
+            \      "PLATFORM_FRAMEWORK": "hal",
             \      "BUILD_FOR_BOARD": "1"
             \    }
             \  } }
@@ -123,6 +126,8 @@ autocmd FileType help setlocal nospell
 
 autocmd BufReadPost *.docx :%!pandoc -f docx -t markdown
 autocmd BufWritePost *.docx :!pandoc -f markdown -t docx % > tmp.docx
+
+autocmd BufEnter *.tpp :setlocal filetype=cpp
 
 " redirect the output of a Vim or external command into a scratch buffer
 " https://vi.stackexchange.com/a/16607
