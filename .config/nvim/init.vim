@@ -39,6 +39,8 @@ Plug 'tpope/vim-abolish'
 Plug 'khaveesh/vim-fish-syntax'
 
 Plug 'vim-test/vim-test'
+
+Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 colorscheme PaperColor
@@ -96,6 +98,11 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKL
 
 nnoremap <Leader>l :CMakeSelectTarget upload<CR>:CMakeBuild<CR>
 nnoremap <Leader>< :CMakeSelectTarget debug<CR>:CMakeBuild<CR>
+
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end
 
 function! SwitchHeaderSource()
     let l:pathNoExt = expand("%:p:r")
