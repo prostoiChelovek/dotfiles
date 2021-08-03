@@ -280,3 +280,14 @@ endfunction
 
 call TextEnableCodeSnip('tex', '$$', '$$', 'SpecialComment')
 
+function! RmdAuto()
+    augroup RmdAutoGenerate
+      autocmd! * <buffer>
+      autocmd BufWritePost <buffer> :RMarkdown pdf
+    augroup END
+endfunction
+
+command! RmdAuto silent call RmdAuto()
+command! RmdNoAuto autocmd! RmdAutoGenerate *
+
+command! RmdOpen silent exec("!zathura " . expand("%:r") . ".pdf" . " &")
