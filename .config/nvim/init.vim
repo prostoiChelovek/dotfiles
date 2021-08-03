@@ -43,6 +43,19 @@ Plug 'vim-test/vim-test'
 Plug 'simeji/winresizer'
 
 Plug 'mboughaba/i3config.vim'
+
+Plug 'lervag/vimtex'
+
+" Plug 'plasticboy/vim-markdown'
+
+" Plug 'inkarkat/vim-SyntaxRange'
+
+Plug 'junegunn/goyo.vim'
+
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+Plug 'vim-pandoc/vim-rmarkdown'
 call plug#end()
 
 colorscheme PaperColor
@@ -96,6 +109,8 @@ let g:cmake_kits = {
 
 let test#strategy = "neovim"
 let test#python#runner = 'python3.7 -m pytest'
+
+let g:vim_markdown_math = 1
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -236,3 +251,32 @@ function! Redir(cmd, rng, start, end)
 endfunction
 
 command! -nargs=1 -complete=command -bar -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
+
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ keepend
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+call TextEnableCodeSnip('tex', '$$', '$$', 'SpecialComment')
+
