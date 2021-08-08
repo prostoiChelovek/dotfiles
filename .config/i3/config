@@ -18,20 +18,21 @@ font pango: Noto Sans 10
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
-exec --no-startup-id hsetroot -center ~/.wallpaper.png
-exec --no-startup-id vk &
-exec --no-startup-id telegram-desktop &
-exec --no-startup-id discord &
+focus_follows_mouse no
 
-exec --no-startup-id ./autostart.sh &
+#autostart
+exec --no-startup-id hsetroot -center ~/.wallpaper.png &
+exec --no-startup-id obsidian &
+
+exec --no-startup-id "fish /home/chelovek/.config/i3/startup.fish"
+
 # exec --no-startup-id xsettingsd &
 # exec --no-startup-id compton -b
 
 exec_always "setxkbmap -model pc105 -layout us,ru -variant ,, -option grp:alt_shift_toggle"
 
 # start a terminal
-bindsym $super+Return exec i3-sensible-terminal
+bindsym $super+Return exec alacritty &
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
@@ -133,6 +134,10 @@ bindsym $super+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $super+minus scratchpad show
 
+bindcode --release 117 exec --no-startup-id xdotool key --clearmodifiers click 5
+
+bindcode --release 112 exec --no-startup-id xdotool key --clearmodifiers click 4
+
 # Set shut down, restart and locking features
 bindsym $super+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
@@ -173,11 +178,13 @@ bar {
         inactive_workspace      #2f343f #2f343f #d8dee8
         urgent_workspace        #2f343f #ebcb8b #2f343f
     }
+    position bottom
     status_command i3blocks
     workspace_buttons yes
     tray_output HDMI-0
 }
 
+# for calendar
 for_window [class="Yad"] floating enable
 
 # window rules, you can find the window class using xprop
@@ -196,6 +203,8 @@ for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo
 assign [class="TelegramDesktop" instance="telegram-desktop"] $ws3
 assign [class="discord" title="Discord"] $ws3
 assign [class="VK" instance="vk"] $ws3
+
+assign [class="obsidian" instance="obsidian"] $ws4
 
 # colour of border, background, text, indicator, and child_border
 client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
