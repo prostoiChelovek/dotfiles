@@ -1,0 +1,23 @@
+session_name: pbh-c
+windows:
+  - window_name: main
+    focus: true
+    layout: bda0,92x55,0,0,3
+    start_directory: ~/projects/pb.hardware/CutUnit
+    panes:
+      - focus: 'true'
+        shell_command: nvim
+  - window_name: build
+    start_directory: ~/projects/pb.hardware/CutUnit
+    layout: 9ea9,281x56,0,0[281x28,0,0,0,281x27,0,29{140x27,0,29,1,140x27,141,29,2}]
+    panes:
+      - focus: 'true'
+        shell_command:
+        - cd cmake-build-Debug
+        - alias b="make all -j16"
+        - alias u="make upload -j16"
+        - alias d="make debug -j16"
+      - shell_command:
+        - alias m="pio device monitor --baud"
+      - shell_command:
+        - nvim
