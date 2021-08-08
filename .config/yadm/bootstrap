@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Setting up pkgsync"
+
+yay -S pkgsync
+
+if ! [ -d "$HOME/.config/pkgsync" ]; then
+    sudo rm /etc/default/pkgsync
+    sudo ln -s $HOME/.config/pkgsync/pkgsync /etc/default/pkgsync
+fi
+
+echo "Running pkgsync"
+sudo pkgsync
+
