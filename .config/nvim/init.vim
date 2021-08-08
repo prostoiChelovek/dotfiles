@@ -200,6 +200,7 @@ function! s:SwitchPSCStyle()
         set background=light
         let g:airline_theme='papercolor'
     endif
+    AirlineRefresh
 endfunction
 map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
 
