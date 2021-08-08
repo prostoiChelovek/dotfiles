@@ -42,7 +42,6 @@ bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show dru
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
 bindsym $super+b exec i3lock -i ~/Pictures/Wallpapers/small-memory-lp.png
 bindsym $super+Shift+w exec google-chrome-stable
-bindsym $super+Shift+p exec exec google-chrome-stable "notion.so" "https://pizzabot.atlassian.net/jira/software/projects/PB/boards/1"
 
 #change volume
 #bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -164,6 +163,17 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 bindsym $super+r mode "resize"
+
+mode "PB" {
+    bindsym w exec exec google-chrome-stable "notion.so" "https://pizzabot.atlassian.net/issues/?filter=10007", mode "default"
+
+    bindsym c exec --no-startup-id alacritty -e fish -c "export pb_proj=CutUnit && tmuxp load -s CutUnit pbh-c", mode "default"
+    bindsym s exec --no-startup-id alacritty -e fish -c "export pb_proj=7th_axis && tmuxp load -s 7th_axis pbh-c", mode "default"
+    bindsym d exec --no-startup-id alacritty -e fish -c "export pb_proj=DoughUnit && tmuxp load -s DoughUnit 'pbh-c"', mode "default"
+
+    bindsym Escape mode "default"
+}
+bindsym $super+Shift+p mode "PB"
 
 # panel
 bar {
