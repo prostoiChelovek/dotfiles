@@ -3,12 +3,12 @@ windows:
   - window_name: main
     focus: true
     layout: bda0,92x55,0,0,3
-    start_directory: ~/projects/pb.hardware/CutUnit
+    start_directory: ~/projects/pb.hardware/$pb_proj
     panes:
       - focus: 'true'
         shell_command: nvim
   - window_name: build
-    start_directory: ~/projects/pb.hardware/CutUnit
+    start_directory: ~/projects/pb.hardware/$pb_proj
     layout: 9ea9,281x56,0,0[281x28,0,0,0,281x27,0,29{140x27,0,29,1,140x27,141,29,2}]
     panes:
       - focus: 'true'
@@ -17,7 +17,9 @@ windows:
         - alias b="make all -j16"
         - alias u="make upload -j16"
         - alias d="make debug -j16"
+        - clear
       - shell_command:
         - alias m="pio device monitor --baud"
+        - clear
       - shell_command:
         - nvim
