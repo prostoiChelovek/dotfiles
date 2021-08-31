@@ -21,9 +21,9 @@ floating_modifier $super
 focus_follows_mouse no
 
 #autostart
-exec --no-startup-id hsetroot -center ~/.wallpaper.png &
 exec --no-startup-id obsidian &
 exec --no-startup-id betterlockscreen -w dim
+exec --no-startup-id hsetroot -center ~/.wallpaper.png &
 
 exec --no-startup-id "fish /home/chelovek/.config/i3/startup.fish"
 
