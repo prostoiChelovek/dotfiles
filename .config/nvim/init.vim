@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged') 
 " color schemes
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -32,7 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'honza/vim-snippets'
 
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+" Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 Plug 'tpope/vim-abolish'
 
@@ -56,6 +56,12 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
 Plug 'vim-pandoc/vim-rmarkdown'
+
+Plug 'cespare/vim-toml'
+
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+Plug 'puremourning/vimspector'
 call plug#end()
 
 colorscheme PaperColor
@@ -72,6 +78,18 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 }
+EOF
+
+lua <<EOF
+require("indent_blankline").setup {
+    char = "|",
+    buftype_exclude = {"terminal"}
+}
+vim.g.indent_blankline_char = '┊'
+vim.g.indent_blankline_use_treesitter = true
+vim.g.indent_blankline_show_current_context = true
+vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block', 'arguments'}
+vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
 EOF
 
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
@@ -111,6 +129,17 @@ let test#strategy = "neovim"
 let test#python#runner = 'python3.7 -m pytest'
 
 let g:vim_markdown_math = 1
+
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint
+
+let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB' ]
+
+let g:vimspector_enable_mappings = 'HUMAN'
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -219,7 +248,7 @@ function! ReviewLastCommit()
     echo 'No git a git repository:' expand('%:p')
   endif
 endfunction
-map <silent> <F10> :call ReviewLastCommit()<CR>
+" map <silent> <F10> :call ReviewLastCommit()<CR>
 
 " https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
 function! Redir(cmd, rng, start, end)

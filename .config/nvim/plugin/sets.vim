@@ -11,6 +11,7 @@ set smartindent
 set relativenumber
 set nu
 set scrolloff=8
+set signcolumn="yes"
 
 " highlight exceedings of 80 chars length limit
 match ColorColumn "\%110v."
