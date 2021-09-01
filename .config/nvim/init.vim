@@ -62,6 +62,12 @@ Plug 'cespare/vim-toml'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'puremourning/vimspector'
+
+Plug 'vimwiki/vimwiki'
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'michal-h21/vim-zettel'
 call plug#end()
 
 colorscheme PaperColor
@@ -140,6 +146,11 @@ nmap <Leader>db <Plug>VimspectorToggleBreakpoint
 let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB' ]
 
 let g:vimspector_enable_mappings = 'HUMAN'
+
+let g:vimwiki_list = [{'path': '~/projects/wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.Rmd'}]
+let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_autowriteall = 1
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ\\;;ABCDEFGHIJKLMNOPQRSTUVWXYZ$,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
