@@ -1,7 +1,7 @@
 color=#FFFFFF
 
 [calendar]
-command=/usr/lib/i3blocks/calendar/calendar
+command=/usr/lib/i3blocks/calendar
 interval=1
 LABEL= 
 DATEFMT=+%H:%M:%S %a %d.%m
@@ -10,7 +10,7 @@ HEIGHT=180
 WIDTH=220
 
 [volume]
-command=/usr/lib/i3blocks/volume/volume
+command=/usr/lib/i3blocks/volume
 LABEL=♪ 
 #LABEL=VOL 
 interval=once
@@ -26,7 +26,7 @@ command=xkblayout-state print "%s"; echo
 interval=5
 
 [cpu_usage]
-command=/usr/lib/i3blocks/cpu_usage/cpu_usage
+command=/usr/lib/i3blocks/cpu_usage
 interval=5
 LABEL=CPU 
 #min_width=CPU: 100%
@@ -36,7 +36,7 @@ DECIMALS=0
 color=#00B4EB
 
 [temperature]
-command=/usr/lib/i3blocks/temperature/temperature
+command=/usr/lib/i3blocks/temperature
 label=TEMP
 interval=5
 T_WARN=70
