@@ -1,7 +1,7 @@
 set $ws1 "1:vim"
 set $ws2 "2:chrome"
 set $ws3 "3:social"
-set $ws4 "4:obsidian"
+set $ws4 "4"
 set $ws5 5
 set $ws6 6
 set $ws7 7
@@ -21,9 +21,8 @@ floating_modifier $super
 focus_follows_mouse no
 
 #autostart
-exec --no-startup-id obsidian &
+# exec --no-startup-id obsidian &
 exec --no-startup-id betterlockscreen -w dim
-exec --no-startup-id hsetroot -center ~/.wallpaper.png &
 
 exec --no-startup-id "fish /home/chelovek/.config/i3/startup.fish"
 
@@ -98,6 +97,8 @@ bindsym $super+3 workspace $ws3
 bindsym $super+4 workspace $ws4
 bindsym $super+5 workspace $ws5
 bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace $ws1
@@ -106,6 +107,8 @@ bindsym $super+Shift+3 move container to workspace $ws3
 bindsym $super+Shift+4 move container to workspace $ws4
 bindsym $super+Shift+5 move container to workspace $ws5
 bindsym $super+Shift+6 move container to workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+Shift+r restart
@@ -271,3 +274,5 @@ workspace $ws3 gaps outer 100
 workspace $ws3 gaps left 500
 workspace $ws3 gaps right 500
 
+exec --no-startup-id hsetroot -center ~/.wallpaper.png
+exec --no-startup-id dunst &
