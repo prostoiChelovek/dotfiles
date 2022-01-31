@@ -32,7 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'honza/vim-snippets'
 
-" Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 Plug 'tpope/vim-abolish'
 
@@ -68,6 +68,12 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'michal-h21/vim-zettel'
+
+Plug 'aklt/plantuml-syntax'
+
+Plug 'junegunn/vim-easy-align'
+
+Plug 'sirtaj/vim-openscad'
 call plug#end()
 
 colorscheme PaperColor
@@ -98,9 +104,12 @@ vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if',
 vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
 EOF
 
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
-let g:nvim_tree_auto_close = 1
-let g:nvim_tree_follow = 1
+lua <<EOF
+require'nvim-tree'.setup {
+    auto_close = true
+}
+EOF
+
 let g:nvim_tree_git_hl = 1
 let g:nvim_tree_group_empty = 1
 nnoremap <C-t> :NvimTreeToggle<CR>
