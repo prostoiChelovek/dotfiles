@@ -47,7 +47,8 @@
       org-journal-date-format "%a, %Y-%m-%d"
       org-journal-file-format "%Y-%m-%d.org")
 
-(setq org-roam-directory "~/projects/org")
+(setq org-roam-directory "~/projects/org"
+      org-roam-dailies-directory "daily")
 
 (setq org-highlight-latex-and-related '(latex script entities))
 
