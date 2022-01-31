@@ -47,6 +47,8 @@
       org-journal-date-format "%a, %Y-%m-%d"
       org-journal-file-format "%Y-%m-%d.org")
 
+(setq org-roam-directory "~/projects/org")
+
 (setq org-highlight-latex-and-related '(latex script entities))
 
 (defun org-export-output-file-name-modified (orig-fun extension &optional subtreep pub-dir)
