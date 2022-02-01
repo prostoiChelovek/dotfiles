@@ -9,7 +9,8 @@
    '(("d" "default" plain "%?" :target
       (file+head "${slug}.org" "#+title: ${title}
 ")
-      :unnarrowed t))))
+      :unnarrowed t)))
+ '(telega-server-libs-prefix "/usr"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

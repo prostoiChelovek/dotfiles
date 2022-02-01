@@ -56,3 +56,6 @@
    :files ("*.el")
    )
   )
+
+(package! visual-fill-column)
+(package! telega)
