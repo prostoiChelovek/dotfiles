@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! vulpea)
+
 (package! dash-functional :recipe)
 (package! ejira :recipe
   (:host github
