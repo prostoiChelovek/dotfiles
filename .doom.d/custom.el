@@ -10,6 +10,7 @@
       (file+head "${slug}.org" "#+title: ${title}
 ")
       :unnarrowed t)))
+ '(projectile-project-search-path '("/home/chelovek/projects"))
  '(telega-server-libs-prefix "/usr"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
