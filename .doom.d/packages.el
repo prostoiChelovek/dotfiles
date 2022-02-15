@@ -64,3 +64,5 @@
 
 (package! scad-mode)
 (package! scad-preview)
+
+(package! org-fragtog)
