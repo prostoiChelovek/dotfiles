@@ -61,3 +61,6 @@
 
 (package! visual-fill-column)
 (package! telega)
+
+(package! scad-mode)
+(package! scad-preview)
