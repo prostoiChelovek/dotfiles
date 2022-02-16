@@ -66,3 +66,6 @@
 (package! scad-preview)
 
 (package! org-fragtog)
+
+(unpin! org-roam)
+(package! org-roam-ui)
