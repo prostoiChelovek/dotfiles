@@ -69,3 +69,6 @@
 
 (unpin! org-roam)
 (package! org-roam-ui)
+
+(package! gnuplot)
+(package! gnuplot-mode)
