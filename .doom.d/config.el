@@ -129,6 +129,11 @@ tasks."
 
 (add-hook 'org-mode-hook 'org-fragtog-mode)
 
+; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/193
+; fixes 'Unable to resolve link <note id>'
+(require 'find-lisp)
+(setq org-id-extra-files (find-lisp-find-files org-roam-directory "\.org$"))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
