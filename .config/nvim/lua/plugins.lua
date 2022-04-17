@@ -54,4 +54,8 @@ return require('packer').startup(function()
             vim.api.nvim_set_keymap('n', '<C-t>', ':NvimTreeToggle<cr>', { noremap = true })
         end
     }
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim' }
+    }
 end)

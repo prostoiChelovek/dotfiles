@@ -111,6 +111,16 @@ _G.packer_plugins = {
     path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = true,
+    path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
   ["tokyonight.nvim"] = {
     config = { "\27LJ\2\na\0\0\3\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\27colorscheme tokyonight\bcmd\bday\21tokyonight_style\6g\bvim\0" },
     loaded = true,
