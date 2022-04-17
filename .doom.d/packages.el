@@ -72,3 +72,12 @@
 
 (package! gnuplot)
 (package! gnuplot-mode)
+
+(package! hledger-mode)
+(package! flycheck-hledger)
+
+; (package! auctex)
+; (package! preview-latex
+;   :recipe (:host github :repo "jwiegley/auctex" :files ("preview/*.el")))
+; (package! org-auctex
+;   :recipe (:host github :repo "karthink/org-auctex" :files ("*.el")))

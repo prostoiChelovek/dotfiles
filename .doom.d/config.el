@@ -127,7 +127,7 @@ tasks."
 (advice-add 'org-agenda :before #'vulpea-agenda-files-update)
 (advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
 
-(add-hook 'org-mode-hook 'org-fragtog-mode)
+; (add-hook 'org-mode-hook 'org-fragtog-mode)
 
 ; https://org-roam.discourse.group/t/org-roam-major-redesign/1198/193
 ; fixes 'Unable to resolve link <note id>'
@@ -144,6 +144,107 @@ tasks."
           org-roam-ui-follow t
           org-roam-ui-update-on-save t
           org-roam-ui-open-on-start t))
+
+(defun center-text-for-reading (&optional arg)
+  "Setup margins for reading long texts.
+If ARG is supplied, reset margins and fringes to zero."
+  (interactive "P")
+  ;; Set the margin width to zero first so that the whole window is
+  ;; available for text area.
+  (set-window-margins (selected-window) 0)
+  (let* ((max-text-width (save-excursion
+                           (let ((w 0))
+                             (goto-char (point-min))
+                             (while (not (eobp))
+                               (end-of-line)
+                               (setq w (max w (current-column)))
+                               (forward-line))
+                             w)))
+         (margin-width (if arg
+                           0
+                         (/ (max (- (+ (window-width)
+                                       left-margin-width
+                                       right-margin-width)
+                                    max-text-width)
+                                 0)
+                            2))))
+    (setq left-margin-width margin-width)
+    (setq right-margin-width margin-width)
+    ;; `set-window-margings' does a similar thing but those changes do
+    ;; not persist across buffer switches.
+    (set-window-buffer nil (current-buffer))))
+
+;;; Basic configuration
+(require 'hledger-mode)
+
+;; To open files with .journal extension in hledger-mode
+(add-to-list 'auto-mode-alist '("\\.journal\\'" . hledger-mode))
+
+;; Provide the path to you journal file.
+;; The default location is too opinionated.
+(setq hledger-jfile (concat (file-name-as-directory org-roam-directory) "hledger.journal"))
+
+(add-hook 'hledger-view-mode-hook #'hl-line-mode)
+(add-hook 'hledger-view-mode-hook #'center-text-for-reading)
+
+(add-hook 'hledger-view-mode-hook
+          (lambda ()
+            (run-with-timer 1
+                            nil
+                            (lambda ()
+                              (when (equal hledger-last-run-command
+                                           "balancesheet")
+                                ;; highlight frequently changing accounts
+                                (highlight-regexp "^.*\\(savings\\|cash\\).*$")
+                                (highlight-regexp "^.*credit-card.*$"
+                                                  'hledger-warning-face))))))
+
+(add-hook 'hledger-mode-hook
+          (lambda ()
+            (make-local-variable 'company-backends)
+            (add-to-list 'company-backends 'hledger-company)))
+
+(add-hook 'hledger-input-post-commit-hook #'hledger-show-new-balances)
+(add-hook 'hledger-input-mode-hook #'auto-fill-mode)
+(add-hook 'hledger-input-mode-hook
+          (lambda ()
+            (make-local-variable 'company-idle-delay)
+            (setq-local company-idle-delay 0.1)))
+
+(require 'hledger-input)
+
+(defun popup-balance-at-point ()
+  "Show balance for account at point in a popup."
+  (interactive)
+  (if-let ((account (thing-at-point 'hledger-account)))
+      (message (hledger-shell-command-to-string (format " balance -N %s "
+                                                        account)))
+    (message "No account at point")))
+
+
+(map! :map hledger-input-mode-map
+      "C-c C-b" 'popup-balance-at-point)
+(map! "C-c e" 'hledger-capture
+      "C-c j" 'hledger-run-command)
+
+(setq hledger-input-buffer-height 20)
+
+(require 'align)
+
+(add-to-list 'align-rules-list
+               `(hledger-accounts
+                 (regexp . ,(rx (+ space)
+                             (+? anything)
+                             (group-n 1 space (+ space)
+                              (? ?-)
+                              (+ digit)
+                              (? ?.)
+                              (* digit))))
+                 (group . 1)
+                 (spacing . 2)
+                 (justify . t)
+                 (separate . entire)
+                 (modes . '(hledger-mode))))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

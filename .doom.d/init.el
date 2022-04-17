@@ -191,3 +191,9 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+; https://archive.baty.net/2020/respecting-visual-lines-in-doom-emacs/
+(use-package-hook! evil
+  :pre-init
+  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+  t)
