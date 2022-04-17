@@ -90,6 +90,12 @@ _G.packer_plugins = {
     path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/neogit",
     url = "https://github.com/TimUntersberger/neogit"
   },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\nœ\2\0\0\6\0\16\0\0216\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\2B\0\2\0016\0\t\0009\0\n\0009\0\v\0'\2\f\0'\3\r\0'\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2\24:NvimTreeToggle<cr>\n<C-t>\6n\20nvim_set_keymap\bapi\bvim\tview\1\0\3\19relativenumber\2\vnumber\2\15signcolumn\byes\24update_focused_file\1\0\0\16ignore_list\1\0\2\15update_cwd\2\venable\2\nsetup\14nvim-tree\frequire\0" },
+    loaded = true,
+    path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/chelovek/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -122,6 +128,10 @@ time([[Config for lualine.nvim]], false)
 time([[Config for tokyonight.nvim]], true)
 try_loadstring("\27LJ\2\na\0\0\3\0\6\0\t6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\27colorscheme tokyonight\bcmd\bday\21tokyonight_style\6g\bvim\0", "config", "tokyonight.nvim")
 time([[Config for tokyonight.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\nœ\2\0\0\6\0\16\0\0216\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0005\3\3\0004\4\0\0=\4\4\3=\3\6\0025\3\a\0=\3\b\2B\0\2\0016\0\t\0009\0\n\0009\0\v\0'\2\f\0'\3\r\0'\4\14\0005\5\15\0B\0\5\1K\0\1\0\1\0\1\fnoremap\2\24:NvimTreeToggle<cr>\n<C-t>\6n\20nvim_set_keymap\bapi\bvim\tview\1\0\3\19relativenumber\2\vnumber\2\15signcolumn\byes\24update_focused_file\1\0\0\16ignore_list\1\0\2\15update_cwd\2\venable\2\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 if should_profile then save_profiles() end
 
 end)

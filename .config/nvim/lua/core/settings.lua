@@ -25,3 +25,5 @@ o.hidden = true
 o.updatetime = 750
 o.termguicolors = true
 o.shortmess = o.shortmess + "c"
+
+o.shell = "/bin/bash"

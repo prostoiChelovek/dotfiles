@@ -35,4 +35,23 @@ return require('packer').startup(function()
         'TimUntersberger/neogit',
         requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }
     }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        config = function()
+            require'nvim-tree'.setup {
+                update_focused_file = {
+                    enable = true,
+                    update_cwd = true,
+                    ignore_list = {},
+                },
+                view = {
+                    number = true,
+                    relativenumber = true,
+                    signcolumn = "yes",
+                }
+            }
+            vim.api.nvim_set_keymap('n', '<C-t>', ':NvimTreeToggle<cr>', { noremap = true })
+        end
+    }
 end)
