@@ -58,4 +58,52 @@ return require('packer').startup(function()
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim' }
     }
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/nvim-lsp-installer'},
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+
+            {'simrat39/rust-tools.nvim'},
+        }
+    }
+    use {
+        'gbrlsnchs/telescope-lsp-handlers.nvim',
+        config = function ()
+            require("telescope").load_extension('lsp_handlers')
+        end
+    }
+    use {
+        "ThePrimeagen/refactoring.nvim",
+        requires = {
+            {"nvim-lua/plenary.nvim"},
+            {"nvim-treesitter/nvim-treesitter"}
+        },
+        config = function ()
+            require('refactoring').setup({})
+            -- load refactoring Telescope extension
+            require("telescope").load_extension("refactoring")
+
+            -- remap to open the Telescope refactoring menu in visual mode
+            vim.api.nvim_set_keymap(
+                "v",
+                "<leader>rr",
+                "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+                { noremap = true }
+            )
+        end
+    }
 end)
