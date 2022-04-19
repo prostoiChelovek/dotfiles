@@ -2,8 +2,6 @@ local o = vim.opt
 local g = vim.g
 local map = vim.api.nvim_set_keymap
 
-map('i', '<C-]>', '<Esc>', {})
-
 map('n', '<Space>', '', {})
 g.mapleader = " "
 g.maplocalleader = " "
