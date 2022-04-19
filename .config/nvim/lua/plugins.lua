@@ -22,11 +22,16 @@ return require('packer').startup(function()
     }
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
+        requires = { 'kyazdani42/nvim-web-devicons', 'arkav/lualine-lsp-progress' },
         config = function()
             require('lualine').setup {
                 options = {
                     theme = 'tokyonight'
+                },
+                sections = {
+                    lualine_c = {
+                        'lsp_progress'
+                    }
                 }
             }
         end
