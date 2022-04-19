@@ -111,4 +111,6 @@ return require('packer').startup(function()
             )
         end
     }
+    use 'dstein64/vim-startuptime'
+    use 'lewis6991/impatient.nvim'
 end)

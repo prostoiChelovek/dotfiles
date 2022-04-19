@@ -1,3 +1,5 @@
+require('impatient')
+
 require("plugins")
 require("core/settings")
 require("core/keymap")
