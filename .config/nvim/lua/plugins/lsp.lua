@@ -10,4 +10,15 @@ lsp.nvim_workspace({
   library = vim.api.nvim_get_runtime_file('', true)
 })
 
+lsp.use('pyright', {
+    settings = {
+        python = {
+            analysis = {
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true,
+            }
+        }
+    }
+})
+
 lsp.setup()
